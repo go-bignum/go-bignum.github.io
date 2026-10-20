@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Site.Title }} — arbitrary precision in pure Go</title>
+<meta name="description" content="{{ .Site.Params.description }}">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+{{ partial "styles.html" . }}
+</head>
+<body class="lm">
+  <header class="nav"><div class="wrap">
+    <a class="brand" href="/"><img class="glyph" src="/img/logo.svg" width="32" height="32" alt="go-bignum logo"> {{ .Site.Title }}</a>
+    <nav><a href="#features">Why</a><a href="#exact">Checks</a><a href="#repos">Repositories</a></nav>
+    {{ partial "theme-toggle.html" . }}
+  </div></header>
+  {{ partial "fork-ribbon.html" "https://github.com/go-bignum" }}
+
+  <div class="hero"><div class="wrap">
+    <div>
+      <h1 class="head">Arbitrary precision, in pure Go.<br><span class="accent">Correctly rounded, then checked against an oracle.</span></h1>
+      <p class="sub">go-bignum is the arbitrary-precision layer for Go: <b>correctly rounded elementary functions and constants</b> on <code>math/big.Float</code>, at any precision and in all six rounding modes, and the <b>oracle harness</b> that drives mpmath from Go to check them. Each function returns the exact result rounded, and says on which side of it the value lies. No cgo, no dependencies.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://go-bignum.github.io/docs/">{{ partial "icons/book.html" . }}Read the documentation →</a>
+      </div>
+      <div class="trust"><span><b>173 100</b> certified results, all identical</span><span><b>6</b> rounding modes</span><span><b>100%</b> statement coverage</span></div>
+    </div>
+    <div class="term">
+      <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">main.go</span></div>
+<pre style="white-space:pre;overflow-x:auto;tab-size:4">import "github.com/go-bignum/bigfloat"
+
+z := new(big.Float).SetPrec(113).SetMode(big.ToNearestEven)
+bigfloat.Exp(z, x) // e^x, correctly rounded to 113 bits
+z.Acc()            // big.Below / big.Exact / big.Above:
+                   // the side of the exact value</pre>
+    </div>
+  </div></div>
+
+  <div class="strip"><div class="wrap">
+    <span class="lead-line">{{ len .Site.Params.repos }} repositories — <b>one library</b>, in development: <code>go get github.com/go-bignum/bigfloat</code></span>
+    <div class="mods">{{ range .Site.Params.repos }}<a href="{{ .href }}">{{ .name }}</a>{{ end }}</div>
+  </div></div>
+
+  <section id="features"><div class="wrap">
+    <span class="eyebrow">Why go-bignum</span>
+    <h2>The MPFR contract, <i>on math/big</i>.</h2>
+    <p class="lead">Every function returns the exact result rounded to the receiver's precision in the receiver's rounding mode, so results are reproducible bit for bit on every architecture and every Go version. The conventions are <code>math/big</code>'s.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">√</div><h3>Roots</h3><p><code>Sqrt</code>, <code>Cbrt</code>, <code>Root(z, x, n)</code> and <code>Hypot</code>, correctly rounded in every mode, which <code>big.Float.Sqrt</code> alone is not.</p></div>
+      <div class="card"><div class="ico">e</div><h3>Exponentials and logarithms</h3><p><code>Exp</code>, <code>Expm1</code>, <code>Log</code>, <code>Log1p</code>, <code>Log2</code>, <code>Log10</code> and <code>Pow</code>.</p></div>
+      <div class="card"><div class="ico">π</div><h3>Trigonometric and hyperbolic</h3><p>The six trigonometric functions and their inverses, and the six hyperbolic ones; argument reduction is exact for any argument.</p></div>
+      <div class="card"><div class="ico">γ</div><h3>Constants</h3><p><code>Pi</code>, <code>E</code>, <code>Ln2</code>, <code>Ln10</code> and <code>EulerGamma</code>, at any precision.</p></div>
+      <div class="card"><div class="ico">🎯</div><h3>Rigorous by construction</h3><p>Every approximation is an enclosure (midpoint-radius balls, fixed-point series with bounded error), evaluated by Ziv's strategy: raise the working precision until the enclosure rounds to a single value.</p></div>
+      <div class="card"><div class="ico">🧪</div><h3>An oracle for the fleet</h3><p>The <code>oracle</code> package drives mpmath from Go, or uses bigfloat itself as the reference, and stores correctly rounded results as golden fixtures other packages can check against.</p></div>
+      <div class="card"><div class="ico">📦</div><h3>Pure Go, CGO=0</h3><p>No cgo, no dependencies. Trigonometric arguments, the Ziv loop and exact roots and powers are bounded, so untrusted input cannot run a function unbounded.</p></div>
+      <div class="card"><div class="ico">⚖️</div><h3>BSD-3-Clause</h3><p>Every repository of the organization. mpmath is an oracle only; MPFR was a reference for the contract, not for code.</p></div>
+    </div>
+  </div></section>
+
+  <section id="exact" style="padding-top:10px"><div class="wrap">
+    <span class="eyebrow">What is checked</span>
+    <h2>{{ len .Site.Params.checks }} kinds of check, each <i>against a certified answer</i>.</h2>
+    <p class="lead">The fixtures are generated by <code>go run ./cmd/oracle</code>: Go draws the arguments, drives mpmath at a precision well above the target, and certifies each rounding. They are committed and compared in the tests.</p>
+    <div class="grid">
+      {{ range .Site.Params.checks }}
+      <div class="card"><h3>{{ .name }}</h3><p>{{ .what | markdownify }}</p></div>
+      {{ end }}
+    </div>
+  </div></section>
+
+  <section id="repos" style="padding-top:20px"><div class="wrap">
+    <span class="eyebrow">Repositories</span>
+    <h2>What is here.</h2>
+    <div class="road">
+      {{ range .Site.Params.repos }}
+      <div class="ph">
+        <div class="top"><h4><a href="{{ .href }}">{{ .name }}</a></h4><span class="tag active">{{ .kind }}</span></div>
+        <p>{{ .blurb | safeHTML }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div></section>
+
+  <section id="eco" style="padding-top:6px"><div class="wrap">
+    <div class="band">
+      <h2>Arbitrary precision for Go.</h2>
+      <p>bigfloat has no release tag yet: it is in development, and its README and design document say what it provides today. The <a href="https://go-bignum.github.io/docs/"><u>documentation</u></a> is made from them.</p>
+      <a class="btn btn-ghost" href="https://github.com/go-bignum">{{ partial "icons/github.html" . }}Read the source on GitHub →</a>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap"><span>go-bignum · <a href="https://github.com/go-bignum">go-bignum on GitHub</a> · BSD-3-Clause</span><span>every bit · rounded right</span></div></footer>
+</body>
+</html>
