@@ -37,7 +37,7 @@ z.Acc()            // big.Below / big.Exact / big.Above:
   </div></div>
 
   <div class="strip"><div class="wrap">
-    <span class="lead-line">{{ len .Site.Params.repos }} repositories — <b>one library</b>, in development: <code>go get github.com/go-bignum/bigfloat</code></span>
+    <span class="lead-line">{{ len .Site.Params.repos }} repositories — <b>one library</b>, released v0.1.0: <code>go get github.com/go-bignum/bigfloat@v0.1.0</code></span>
     <div class="mods">{{ range .Site.Params.repos }}<a href="{{ .href }}">{{ .name }}</a>{{ end }}</div>
   </div></div>
 
@@ -84,7 +84,7 @@ z.Acc()            // big.Below / big.Exact / big.Above:
   <section id="eco" style="padding-top:6px"><div class="wrap">
     <div class="band">
       <h2>Arbitrary precision for Go.</h2>
-      <p>bigfloat has no release tag yet: it is in development, and its README and design document say what it provides today. The <a href="https://go-bignum.github.io/docs/"><u>documentation</u></a> is made from them.</p>
+      <p>bigfloat is released v0.1.0, and every function is at or below mpmath's time on one core (<a href="https://github.com/go-bignum/bigfloat/blob/v0.1.0/docs/perf.md"><u>docs/perf.md</u></a>). Its README and design document say what it provides. The <a href="https://go-bignum.github.io/docs/"><u>documentation</u></a> is made from them.</p>
       <a class="btn btn-ghost" href="https://github.com/go-bignum">{{ partial "icons/github.html" . }}Read the source on GitHub →</a>
     </div>
   </div></section>
