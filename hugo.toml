@@ -22,9 +22,9 @@ disableKinds = ['taxonomy', 'term', 'rss', 'sitemap', '404']
 # strip under the hero). A field nothing renders does not stay true.
 [[params.repos]]
   name  = "bigfloat"
-  kind  = "in development"
+  kind  = "released v0.1.0"
   href  = "https://github.com/go-bignum/bigfloat"
-  blurb = "No release tag yet. Correctly rounded roots, exponentials and logarithms, trigonometric and hyperbolic functions, <code>Pow</code> and the constants π, e, ln 2, ln 10 and γ on <code>math/big.Float</code>, at any precision and in all six rounding modes; the <code>oracle</code> package drives mpmath from Go for correctly rounded reference values and golden fixtures."
+  blurb = "Released v0.1.0; every function is at or below mpmath's time on one core (0.18–0.97× at 53–200 bits, 0.27–0.92× at 1000 bits; <a href=\"https://github.com/go-bignum/bigfloat/blob/v0.1.0/docs/perf.md\">docs/perf.md</a>). Correctly rounded roots, exponentials and logarithms, trigonometric and hyperbolic functions, <code>Pow</code> and the constants π, e, ln 2, ln 10 and γ on <code>math/big.Float</code>, at any precision and in all six rounding modes; the <code>oracle</code> package drives mpmath from Go for correctly rounded reference values and golden fixtures."
 [[params.repos]]
   name  = "docs"
   kind  = "site"
@@ -37,10 +37,10 @@ disableKinds = ['taxonomy', 'term', 'rss', 'sitemap', '404']
   blurb = "Logos and icons for the organization, in SVG / PNG / JPG / ICO / ICNS across colour, white and black variants."
 
 # The cards of #exact and their count come from this list. Each statement is
-# from the README of the library it names, as of its initial import (no tag).
+# from the README of the library it names, as of v0.1.0.
 [[params.checks]]
   name = "Golden fixtures from mpmath"
-  what = "28 850 cases over the 29 functions and constants, at 24, 53, 64, 113, 200 and 1000 bits, each checked in all six rounding modes, value, sign of zero and accuracy: 173 100 results, all identical to the certified roundings. (bigfloat)"
+  what = "28 840 cases over the 29 functions and constants, at 24, 53, 64, 113, 200 and 1000 bits, each checked in all six rounding modes, value, sign of zero and accuracy: 173 040 results, all identical to the certified roundings. (bigfloat)"
 [[params.checks]]
   name = "Fuzzing"
   what = "`FuzzFunctions` compares every function, mode and precision with the oracle at more than twice the precision; only `ErrNaN` and `ErrLimit` may panic. (bigfloat)"
