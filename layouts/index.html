@@ -37,7 +37,7 @@ z.Acc()            // big.Below / big.Exact / big.Above:
   </div></div>
 
   <div class="strip"><div class="wrap">
-    <span class="lead-line">{{ len .Site.Params.repos }} repositories — <b>one library</b>, released v0.1.0: <code>go get github.com/go-bignum/bigfloat@v0.1.0</code></span>
+    <span class="lead-line">{{ len .Site.Params.repos }} repositories — <b>one library</b>, released v0.2.0: <code>go get github.com/go-bignum/bigfloat@v0.2.0</code></span>
     <div class="mods">{{ range .Site.Params.repos }}<a href="{{ .href }}">{{ .name }}</a>{{ end }}</div>
   </div></div>
 
@@ -49,7 +49,7 @@ z.Acc()            // big.Below / big.Exact / big.Above:
       <div class="card"><div class="ico">√</div><h3>Roots</h3><p><code>Sqrt</code>, <code>Cbrt</code>, <code>Root(z, x, n)</code> and <code>Hypot</code>, correctly rounded in every mode, which <code>big.Float.Sqrt</code> alone is not.</p></div>
       <div class="card"><div class="ico">e</div><h3>Exponentials and logarithms</h3><p><code>Exp</code>, <code>Expm1</code>, <code>Log</code>, <code>Log1p</code>, <code>Log2</code>, <code>Log10</code> and <code>Pow</code>.</p></div>
       <div class="card"><div class="ico">π</div><h3>Trigonometric and hyperbolic</h3><p>The six trigonometric functions and their inverses, and the six hyperbolic ones; argument reduction is exact for any argument.</p></div>
-      <div class="card"><div class="ico">γ</div><h3>Constants</h3><p><code>Pi</code>, <code>E</code>, <code>Ln2</code>, <code>Ln10</code> and <code>EulerGamma</code>, at any precision.</p></div>
+      <div class="card"><div class="ico">γ</div><h3>Constants</h3><p><code>Pi</code>, <code>E</code>, <code>Ln2</code>, <code>Ln10</code>, <code>EulerGamma</code> and <code>Catalan</code>, at any precision.</p></div>
       <div class="card"><div class="ico">🎯</div><h3>Rigorous by construction</h3><p>Every approximation is an enclosure (midpoint-radius balls, fixed-point series with bounded error), evaluated by Ziv's strategy: raise the working precision until the enclosure rounds to a single value.</p></div>
       <div class="card"><div class="ico">🧪</div><h3>An oracle for the fleet</h3><p>The <code>oracle</code> package drives mpmath from Go, or uses bigfloat itself as the reference, and stores correctly rounded results as golden fixtures other packages can check against.</p></div>
       <div class="card"><div class="ico">📦</div><h3>Pure Go, CGO=0</h3><p>No cgo, no dependencies. Trigonometric arguments, the Ziv loop and exact roots and powers are bounded, so untrusted input cannot run a function unbounded.</p></div>
@@ -84,7 +84,7 @@ z.Acc()            // big.Below / big.Exact / big.Above:
   <section id="eco" style="padding-top:6px"><div class="wrap">
     <div class="band">
       <h2>Arbitrary precision for Go.</h2>
-      <p>bigfloat is released v0.1.0, and every function is at or below mpmath's time on one core (<a href="https://github.com/go-bignum/bigfloat/blob/v0.1.0/docs/perf.md"><u>docs/perf.md</u></a>). Its README and design document say what it provides. The <a href="https://go-bignum.github.io/docs/"><u>documentation</u></a> is made from them.</p>
+      <p>bigfloat is released v0.2.0, and every function is at or below mpmath's time on one core (<a href="https://github.com/go-bignum/bigfloat/blob/v0.2.0/docs/perf.md"><u>docs/perf.md</u></a>). Its README and design document say what it provides. The <a href="https://go-bignum.github.io/docs/"><u>documentation</u></a> is made from them.</p>
       <a class="btn btn-ghost" href="https://github.com/go-bignum">{{ partial "icons/github.html" . }}Read the source on GitHub →</a>
     </div>
   </div></section>

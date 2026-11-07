@@ -14,7 +14,7 @@ go run github.com/go-fleettools/landingkit/cmd/landingkit brand static/img/logo.
 hugo server
 ```
 
-`bigfloat`, the one library of the organization, is shown as released v0.1.0, with a performance
+`bigfloat`, the one library of the organization, is shown as released v0.2.0, with a performance
 line linking its `docs/perf.md` (every function at or below mpmath's time).
 
 | Workflow | What |
